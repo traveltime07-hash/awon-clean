@@ -4,45 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kontakt — AWON</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:image" content="https://awonsystem.pl/api/og?title=Kontakt%20%E2%80%94%20AWON">
   <link rel="stylesheet" href="/uifix.css">
   <link rel="stylesheet" href="/pages.css">
-  <meta name="description" content="Skontaktuj się z zespołem AWON.">
 </head>
 <body>
-  <main class="wrap">
+  <a href="#main" class="skip-link">Pomiń do treści</a>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a href="/" class="brand"><img src="/logo/awon-mark.svg" alt="" width="28" height="28"> AWON</a>
+      <nav class="nav"><a href="/">Start</a><a href="/contact.html">Kontakt</a></nav>
+      <button id="theme-toggle" class="btn outline theme-toggle" aria-label="Przełącz motyw"><span id="theme-label">Ciemny</span></button>
+    </div>
+  </header>
+
+  <main id="main" class="wrap narrow">
     <h1>Kontakt</h1>
-    <p>Masz pytanie? Wypełnij formularz — odpowiemy.</p>
-
-    <form method="post" action="/api/contact?redirect=/thanks.html" class="form">
-      <div class="row">
-        <label>Imię i nazwisko
-          <input name="name" required minlength="2" maxlength="100" autocomplete="name">
-        </label>
-      </div>
-
-      <div class="row">
-        <label>E-mail
-          <input type="email" name="email" required maxlength="160" autocomplete="email" inputmode="email">
-        </label>
-      </div>
-
-      <div class="row">
-        <label>Wiadomość
-          <textarea name="message" required minlength="10" maxlength="2000" rows="6"></textarea>
-        </label>
-      </div>
-
-      <!-- honeypot (pułapka na boty) — nie wypełniaj -->
-      <div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
-        <label>Strona (zostaw puste)
-          <input name="website" autocomplete="off">
-        </label>
-      </div>
-
-      <button type="submit">Wyślij</button>
-    </form>
-
-    <p>Wolisz napisać bezpośrednio? <a href="mailto:kontakt@awonsystem.pl">kontakt@awonsystem.pl</a></p>
+    <div class="box">
+      <form method="post" action="/api/contact?redirect=/thanks.html" class="form">
+        <div class="row"><label>Imię i nazwisko <input name="name" required minlength="2" maxlength="100" autocomplete="name"></label></div>
+        <div class="row"><label>E-mail <input type="email" name="email" required maxlength="160" autocomplete="email"></label></div>
+        <div class="row"><label>Wiadomość <textarea name="message" required minlength="10" maxlength="2000" rows="6"></textarea></label></div>
+        <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label>Strona (zostaw puste)<input name="website" autocomplete="off"></label></div>
+        <button type="submit">Wyślij</button>
+      </form>
+    </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap bar"><div>© <span id="year"></span> AWON</div><div class="meta">awonsystem.pl</div></div>
+  </footer>
+  <script defer src="/theme.js"></script><script defer src="/footer.js"></script>
 </body>
 </html>

@@ -14,31 +14,23 @@
     <!-- PWA -->
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#0f172a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="/favicon.svg">
 
-    <!-- SEO -->
+    <!-- SEO / OG -->
     <link rel="canonical" href="https://awonsystem.pl/">
     <meta property="og:title" content="AWON — system zarządzania wynajmem" />
-    <meta property="og:description" content="AWON — prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
+    <meta property="og:description" content="Prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://awonsystem.pl/" />
-    <meta property="og:image" content="https://awonsystem.pl/logo/og.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="https://awonsystem.pl/api/og" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AWON — system zarządzania wynajmem" />
-    <meta name="twitter:description" content="AWON — prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
-    <meta name="twitter:image" content="https://awonsystem.pl/logo/og.png" />
 
-    <!-- preconnect/dns-prefetch -->
+    <!-- preconnect -->
     <link rel="preconnect" href="https://api.awonsystem.pl" crossorigin>
     <link rel="dns-prefetch" href="//api.awonsystem.pl">
     <link rel="preconnect" href="https://vitals.vercel-insights.com" crossorigin>
     <link rel="dns-prefetch" href="//vitals.vercel-insights.com">
 
-    <!-- CSS: bazowe utilities + layout komponentów -->
+    <!-- CSS -->
     <link rel="preload" href="/uifix.css" as="style">
     <link rel="stylesheet" href="/uifix.css" />
     <link rel="stylesheet" href="/pages.css" />
@@ -46,12 +38,32 @@
   <body>
     <a href="#main" class="skip-link">Pomiń do treści</a>
 
-    <main id="main">
+    <header class="site-header">
+      <div class="wrap bar">
+        <a href="/" class="brand"><img src="/logo/awon-mark.svg" alt="AWON" width="32" height="32"> AWON</a>
+        <nav class="nav">
+          <a href="/">Start</a>
+          <a href="/contact.html">Kontakt</a>
+        </nav>
+        <button id="theme-toggle" class="btn outline theme-toggle" aria-label="Przełącz motyw">
+          <span id="theme-label">Ciemny</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" class="wrap">
       <div id="root"></div>
     </main>
 
-    <div id="env-badge" aria-hidden="true"></div>
+    <footer class="site-footer">
+      <div class="wrap bar">
+        <div>© <span id="year"></span> AWON</div>
+        <div class="meta">awonsystem.pl</div>
+      </div>
+    </footer>
 
+    <script defer src="/theme.js"></script>
+    <script defer src="/footer.js"></script>
     <script defer src="/errors-log.js"></script>
     <script defer src="/error-overlay.js"></script>
     <script defer src="/lazy.js"></script>

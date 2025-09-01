@@ -1,24 +1,29 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dziękujemy — AWON</title>
-  <meta name="description" content="Dziękujemy za kontakt.">
-  <link rel="canonical" href="https://awonsystem.pl/thanks.html">
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0f172a">
-  <link rel="stylesheet" href="/uifix.css">
-  <link rel="stylesheet" href="/pages.css">
+  <link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#0f172a">
+  <meta property="og:image" content="https://awonsystem.pl/api/og?title=Dzi%C4%99kujemy%20%E2%80%94%20AWON">
+  <link rel="stylesheet" href="/uifix.css"><link rel="stylesheet" href="/pages.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Pomiń do treści</a>
-  <main id="main" class="wrap">
-    <h1>Dziękujemy za wiadomość</h1>
-    <div class="box">
-      <p>Twoja wiadomość została wysłana. Odezwiemy się tak szybko, jak to możliwe.</p>
-      <p class="meta">Jeśli chcesz, możesz wrócić na <a href="/">stronę główną</a> lub przejść do <a href="/contact.html">formularza</a>.</p>
+  <header class="site-header"><div class="wrap bar">
+    <a href="/" class="brand"><img src="/logo/awon-mark.svg" alt="" width="28" height="28"> AWON</a>
+    <nav class="nav"><a href="/">Start</a><a href="/contact.html">Kontakt</a></nav>
+    <button id="theme-toggle" class="btn outline theme-toggle" aria-label="Przełącz motyw"><span id="theme-label">Ciemny</span></button>
+  </div></header>
+
+  <main id="main" class="wrap narrow">
+    <div class="card">
+      <h1>Dziękujemy za wiadomość</h1>
+      <p>Odeślemy odpowiedź tak szybko, jak to możliwe.</p>
+      <div class="links"><a class="btn outline" href="/">Strona główna</a><a class="btn" href="/contact.html">Wyślij kolejną</a></div>
     </div>
   </main>
+
+  <footer class="site-footer"><div class="wrap bar"><div>© <span id="year"></span> AWON</div><div class="meta">awonsystem.pl</div></div></footer>
+  <script defer src="/theme.js"></script><script defer src="/footer.js"></script>
 </body>
 </html>
