@@ -22,6 +22,7 @@ form.aw-form{display:block;margin-top:8px}.aw-row{margin:12px 0}
 .aw-page-404 .aw-card h1{margin-top:0}.aw-mt-14{margin-top:3.5rem}
 
 /* Header/Footer – też z prefixem */
+.aw-nav{display:flex !important;gap:14px !important;align-items:center} .aw-nav a+a{margin-left:14px !important}
 .aw-nav{display:flex !important;gap:14px !important;align-items:center}
 .aw-site-header{background:var(--surface);border-bottom:1px solid var(--border)}
 .aw-site-footer{background:var(--surface);border-top:1px solid var(--border);color:var(--muted);font-size:13px}
