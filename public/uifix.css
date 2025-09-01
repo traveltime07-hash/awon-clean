@@ -94,3 +94,23 @@ select option {
 button, [role="option"] {
   cursor: pointer;
 }
+
+/* ===== ENV badge (STAGING/DEV) ===== */
+#env-badge{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 99999;
+  display: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+  font-size: 12px;
+  letter-spacing: .08em;
+  font-weight: 700;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.18);
+  opacity: .9;
+  user-select: none;
+  pointer-events: none;
+}

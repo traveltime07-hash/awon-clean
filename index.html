@@ -6,65 +6,16 @@
     <title>AWON</title>
     <meta name="description" content="AWON — system zarządzania wynajmem obiektów noclegowych" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- GLOBALNY FIX UI -->
     <link rel="stylesheet" href="/uifix.css" />
   </head>
   <body>
     <div id="root"></div>
 
-    <!-- Znacznik środowiska (STAGING/DEV) -->
-    <div
-      id="env-badge"
-      style="
-        position: fixed;
-        top: 12px;
-        right: 12px;
-        z-index: 99999;
-        display: none;
-        padding: 6px 10px;
-        border-radius: 999px;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
-        font-size: 12px;
-        letter-spacing: .08em;
-        font-weight: 700;
-        color: #ffffff;
-        box-shadow: 0 4px 10px rgba(0,0,0,.18);
-        opacity: .9;
-        user-select: none;
-        pointer-events: none;
-      ">
-    </div>
+    <!-- Znacznik środowiska (bez inline stylu/skryptu) -->
+    <div id="env-badge" aria-hidden="true"></div>
 
+    <!-- Najpierw nasz badge, potem aplikacja -->
+    <script defer src="/env-badge.js"></script>
     <script type="module" src="/src/main.tsx"></script>
-
-    <!-- Skrypt: pokaż badge dla STAGING/DEV, ukryj dla produkcji -->
-    <script>
-      (function () {
-        try {
-          var env = '%VITE_ENV%'; // Vite podmieni przy buildzie
-          var host = (location && location.hostname || '').toLowerCase();
-
-          var label = '';
-          var bg = '#111827';
-
-          if ((env && env.toLowerCase() === 'preview') || host.startsWith('staging.')) {
-            label = 'STAGING';
-            bg = '#f59e0b';
-          } else if ((env && env.toLowerCase() === 'development') || host.startsWith('localhost')) {
-            label = 'DEV';
-            bg = '#2563eb';
-          }
-
-          if (label) {
-            var el = document.getElementById('env-badge');
-            el.textContent = label;
-            el.style.background = bg;
-            el.style.display = 'inline-flex';
-          }
-        } catch (e) {
-          console && console.warn && console.warn('ENV badge error:', e);
-        }
-      })();
-    </script>
   </body>
 </html>
