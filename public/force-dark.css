@@ -61,3 +61,47 @@ form button, form .btn {
 div[class*="container"] {
   background:transparent !important; color:inherit !important;
 }
+
+/* ====== /login – twarde ciemne tło + jasny tekst (przebija Tailwindowe bg/text) ====== */
+.route-login body,
+.route-login #root, 
+.route-login #app,
+.route-login .min-h-screen,
+.route-login .app, .route-login .layout, .route-login .page,
+.route-login .content, .route-login .container, .route-login .wrapper,
+.route-login .auth, .route-login .auth-page, .route-login .auth-layout,
+.route-login .login, .route-login .login-page, .route-login .login-layout,
+.route-login .main-content, .route-login .page-content {
+  background-color:#0f172a !important;
+  color:#e5e7eb !important;
+}
+
+/* Dowolne klasy tła „jasne” – zabijamy je na /login */
+.route-login .bg-white,
+.route-login .bg-gray-50, .route-login .bg-slate-50, .route-login .bg-zinc-50, .route-login .bg-neutral-50,
+.route-login [class*="bg-gray-"], .route-login [class*="bg-slate-"], .route-login [class*="bg-zinc-"], .route-login [class*="bg-neutral-"] {
+  background-color:#0f172a !important;
+}
+
+/* Dowolne „ciemne” kolory tekstu – robimy jasne na /login */
+.route-login .text-black, .route-login .text-gray-800, .route-login .text-slate-800, .route-login .text-zinc-800, .route-login .text-neutral-800,
+.route-login [class*="text-gray-8"], .route-login [class*="text-slate-8"], .route-login [class*="text-zinc-8"], .route-login [class*="text-neutral-8"] {
+  color:#e5e7eb !important;
+}
+
+/* Karta logowania i formularz – spójne z resztą serwisu */
+.route-login .auth-card, .route-login .login-card, .route-login .card, .route-login .panel, .route-login .sheet, .route-login .modal {
+  background:#0b1220 !important;
+  border:1px solid #1f2937 !important;
+  border-radius:16px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+.route-login form input, .route-login form textarea, .route-login form select {
+  background:#0b1220 !important; color:#e5e7eb !important;
+  border:1px solid #263244 !important; border-radius:10px !important;
+}
+.route-login form input::placeholder, .route-login form textarea::placeholder { color:#9aa4b2 !important; }
+.route-login form button, .route-login form .btn {
+  background:#1f2937 !important; color:#e5e7eb !important;
+  border:1px solid #334155 !important; border-radius:10px !important;
+}
