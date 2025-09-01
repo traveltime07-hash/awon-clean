@@ -1,0 +1,96 @@
+/* AWON — UI Fix Pack (listy rozwijane, kontrast, focus)
+   Działa globalnie i nie zmienia logiki aplikacji. */
+
+:root { color-scheme: light dark; }
+
+/* --- Pola i selecty (jasny tryb) --- */
+select,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  color: #0f172a;            /* ciemny granatowy tekst */
+  background: #ffffff;
+  border: 1px solid #e5e7eb; /* jasna ramka */
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59,130,246,.35); /* delikatny focus */
+}
+
+/* Elementy opcji w select (nie wszędzie działa 100%, ale poprawia większość przeglądarek) */
+select option {
+  color: #0f172a;
+  background: #ffffff;
+}
+
+/* --- Ciemny tryb (.dark na <html>/<body> albo preferencja systemu) --- */
+@media (prefers-color-scheme: dark) {
+  select,
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    color: #f8fafc;          /* bardzo jasny tekst */
+    background: #0f172a;     /* granatowe tło */
+    border-color: #334155;   /* ciemniejsza ramka */
+  }
+  select option {
+    color: #f8fafc;
+    background: #111827;
+  }
+}
+
+/* Jeśli aplikacja używa klasy .dark do przełączania trybu: */
+.dark select,
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark textarea {
+  color: #f8fafc;
+  background: #0f172a;
+  border-color: #334155;
+}
+.dark select option {
+  color: #f8fafc;
+  background: #111827;
+}
+
+/* --- Popularne kontenery list (biblioteki/ARIA) --- */
+[role="listbox"],
+.dropdown-menu,
+.menu,
+.select-content,
+[role="menu"] {
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.dark [role="listbox"],
+.dark .dropdown-menu,
+.dark .menu,
+.dark .select-content,
+.dark [role="menu"],
+@media (prefers-color-scheme: dark) {
+  [role="listbox"],
+  .dropdown-menu,
+  .menu,
+  .select-content,
+  [role="menu"] {
+    color: #f8fafc;
+    background: #0f172a;
+    border-color: #334155;
+  }
+}
+
+/* Ułatwienie kliknięcia */
+button, [role="option"] {
+  cursor: pointer;
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWON — Test selectów</title>
+  <link rel="stylesheet" href="/uifix.css">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:24px;color:#0f172a}
+    .wrap{max-width:720px;margin:auto}
+    .row{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+    label{min-width:180px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>AWON — Test list rozwijanych</h1>
+    <p>Sprawdź, czy tekst jest <b>czytelny</b> w każdym wariancie.</p>
+
+    <div class="row">
+      <label>Standardowy select:</label>
+      <select>
+        <option>Wybierz opcję…</option>
+        <option>Sprzątanie</option>
+        <option>Powiadom współpracownika</option>
+        <option>Rezerwacja online</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Wiele opcji:</label>
+      <select size="4">
+        <option>Zameldowanie</option>
+        <option>Wymeldowanie</option>
+        <option>Klient ma psa</option>
+        <option>Pobór kaucji</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Input (dla porównania):</label>
+      <input type="text" placeholder="Wpisz tekst…" />
+    </div>
+
+    <p><a href="/">← Wróć na stronę główną</a></p>
+  </div>
+</body>
+</html>

@@ -6,11 +6,13 @@
     <title>AWON</title>
     <meta name="description" content="AWON — system zarządzania wynajmem obiektów noclegowych" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- GLOBALNY FIX UI -->
+    <link rel="stylesheet" href="/uifix.css" />
   </head>
   <body>
     <div id="root"></div>
 
-    <!-- Znacznik środowiska (pokazuje się tylko na STAGING/DEV) -->
+    <!-- Znacznik środowiska (STAGING/DEV) -->
     <div
       id="env-badge"
       style="
@@ -39,7 +41,7 @@
     <script>
       (function () {
         try {
-          var env = '%VITE_ENV%'; // Vite podmieni to przy buildzie
+          var env = '%VITE_ENV%'; // Vite podmieni przy buildzie
           var host = (location && location.hostname || '').toLowerCase();
 
           var label = '';
