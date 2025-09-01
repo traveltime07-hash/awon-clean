@@ -1,9 +1,9 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/robots.txt", "destination": "/api/robots.txt" },
+    { "source": "/robots.txt",  "destination": "/api/robots.txt" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap.xml" },
-    { "source": "/app/(.*)", "destination": "/index.html" }
+    { "source": "/app/(.*)",    "destination": "/index.html" }
   ],
   "headers": [
     { "source": "/manifest.webmanifest", "headers": [
