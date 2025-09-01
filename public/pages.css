@@ -1,4 +1,4 @@
-/* ====== AWON Page Layout & Components ====== */
+/* ====== AWON Page Layout & Components (Dark) ====== */
 
 /* Kontener strony */
 .wrap{
@@ -8,9 +8,9 @@
   padding:clamp(16px, 3vw, 28px);
 }
 
-/* Karty / boksy */
+/* Karty / sekcje */
 .box{
-  background:#fff;
+  background:var(--surface);
   border:1px solid var(--border);
   border-radius:var(--radius);
   padding:clamp(14px, 2.2vw, 22px);
@@ -25,13 +25,13 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
-/* Linki-akcje w 404 itp. */
+/* Linki-akcje */
 .links{ display:flex; flex-wrap:wrap; gap:10px; }
 .links .btn{ padding:10px 16px; }
 
 /* Karta większa (np. 404) */
 .card{
-  background:#fff;
+  background:var(--surface);
   border:1px solid var(--border);
   border-radius:calc(var(--radius) + 2px);
   padding:clamp(22px, 3vw, 34px);
@@ -41,10 +41,7 @@
 }
 
 /* Formularze – spójne na wszystkich stronach */
-form.form, form{
-  display:block;
-  margin-top:8px;
-}
+form.form, form{ display:block; margin-top:8px; }
 .row{ margin:12px 0; }
 
 input[type=text], input[type=email], input[type=number],
@@ -53,28 +50,30 @@ input[type=password], input[type=search], textarea, select{
   padding:12px 14px;
   border:1px solid var(--border);
   border-radius:12px;
-  background:#fff;
+  background:var(--input);
   color:var(--text);
   outline:none;
   transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
 }
-
 textarea{ resize:vertical; }
+
+input::placeholder, textarea::placeholder{ color:var(--muted); }
 
 input:focus, textarea:focus, select:focus{
   border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(34,197,94,.25);
+  box-shadow:0 0 0 3px rgba(34,197,94,.3);
 }
 
 /* Przyciski w formularzu */
 form button[type=submit]{ margin-top:8px; }
 
-/* Tabela zdrowia/wersji (jeśli gdzieś używasz <pre> i JSON) */
+/* REJESTRY/JSON itp. */
 pre{
-  background:var(--surface);
+  background:var(--bg);
   border:1px solid var(--border);
   border-radius:10px;
   padding:12px;
+  color:var(--text);
   overflow:auto;
 }
 
@@ -82,10 +81,10 @@ pre{
 .page-404 .card h1{ margin-top:0; }
 .mt-14{ margin-top:3.5rem; }
 
-/* Header/stopka (opcjonalnie pod layout aplikacji) */
+/* Header/stopka (opcjonalne pod layout aplikacji) */
 .site-header, .site-footer{
+  background:var(--surface);
   border-bottom:1px solid var(--border);
-  background:var(--bg);
 }
 .site-footer{
   border-top:1px solid var(--border);
