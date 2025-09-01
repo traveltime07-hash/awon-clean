@@ -21,3 +21,43 @@ label { color:#cfe1ff; }
 /* drobny spacing w menu (na wszelki wypadek) */
 .aw-nav{display:flex !important; gap:14px !important; align-items:center}
 .aw-nav a+a{margin-left:14px !important}
+
+/* --- LOGIN / AUTH: wymuś ciemne tło na wszystkich typowych kontenerach --- */
+html, body { min-height:100%; }
+#root, #app, main, .app, .layout, .page, .content, .container, .wrapper,
+.auth, .auth-page, .auth-layout, .login, .login-page, .login-layout,
+.main-content, .page-content {
+  background:#0f172a !important;
+  color:#e5e7eb !important;
+  min-height:100vh;
+}
+
+/* kontenery logowania – wyśrodkuj pion/poziom, gdy istnieją */
+.auth-center, .auth-wrapper, .auth-container, .login-wrapper, .login-container {
+  display:flex; align-items:center; justify-content:center;
+  min-height:calc(100vh - 80px);
+}
+
+/* karta logowania – spójna z resztą serwisu */
+.auth-card, .login-card, .card, .panel, .sheet, .modal {
+  background:#0b1220 !important;
+  border:1px solid #1f2937 !important;
+  border-radius:16px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+
+/* formularz: pola, placeholdery, przyciski */
+form input, form textarea, form select {
+  background:#0b1220 !important; color:#e5e7eb !important;
+  border:1px solid #263244 !important; border-radius:10px !important;
+}
+form input::placeholder, form textarea::placeholder { color:#9aa4b2 !important; }
+form button, form .btn {
+  background:#1f2937 !important; color:#e5e7eb !important;
+  border:1px solid #334155 !important; border-radius:10px !important;
+}
+
+/* na wszelki wypadek: każdy „container*” niech będzie przezroczysty/ciemny */
+div[class*="container"] {
+  background:transparent !important; color:inherit !important;
+}
