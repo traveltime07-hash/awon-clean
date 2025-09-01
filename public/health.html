@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWON — Health</title>
+  <link rel="stylesheet" href="/uifix.css">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:24px;color:#0f172a}
+    .wrap{max-width:860px;margin:auto}
+    h1{font-size:22px;margin:0 0 12px}
+    code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
+    .ok{color:#16a34a;font-weight:700}
+    .warn{color:#b45309;font-weight:700}
+    .err{color:#dc2626;font-weight:700}
+    .box{border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin:12px 0}
+    .meta{font-size:14px;color:#334155}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>AWON — Health</h1>
+    <div class="box grid">
+      <div>Hostname: <code id="host"></code></div>
+      <div>Czas (UTC): <code id="time"></code></div>
+      <div>Tryb (zgadywanie po hostname): <code id="mode"></code></div>
+      <div>Start: <a href="/">/</a> • Ikona: <a href="/favicon.svg" target="_blank">/favicon.svg</a></div>
+    </div>
+
+    <div class="box">
+      <h3 style="margin:0 0 8px">/health.json (statyczny)</h3>
+      <div id="loc-status">Ładowanie…</div>
+      <pre id="loc-json" style="white-space:pre-wrap"></pre>
+    </div>
+
+    <div class="box">
+      <h3 style="margin:0 0 8px">API via proxy (/api/health-proxy → https://api.awonsystem.pl/health)</h3>
+      <div class="meta">Omijamy CORS, bo żądanie idzie z tej samej domeny.</div>
+      <div id="api-status">Ładowanie…</div>
+      <pre id="api-json" style="white-space:pre-wrap"></pre>
+    </div>
+
+    <div class="box">
+      Szybkie linki:
+      <a href="/staging.txt" target="_blank">/staging.txt</a> •
+      <a href="/smoke.html" target="_blank">/smoke.html</a> •
+      <a href="/select-test.html" target="_blank">/select-test.html</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const host = location.hostname.toLowerCase();
+      document.getElementById('host').textContent = host;
+      document.getElementById('time').textContent = new Date().toISOString();
+      document.getElementById('mode').textContent =
+        host.startsWith('staging.') ? 'staging' :
+        host.startsWith('localhost') ? 'dev' : 'production';
+
+      // Local health.json
+      fetch('/health.json?cb=' + Date.now(), {cache:'no-store'})
+        .then(async r=>{
+          const t = document.getElementById('loc-status');
+          const pre = document.getElementById('loc-json');
+          if(r.ok){
+            t.innerHTML = '<span class="ok">OK:</span> /health.json dostępny.';
+            pre.textContent = JSON.stringify(await r.json(), null, 2);
+          }else{
+            t.innerHTML = '<span class="err">BŁĄD:</span> /health.json zwrócił status ' + r.status + '.';
+          }
+        })
+        .catch(()=>{
+          document.getElementById('loc-status').innerHTML = '<span class="err">BŁĄD:</span> nie udało się pobrać /health.json';
+        });
+
+      // API przez nasz proxy (brak CORS)
+      fetch('/api/health-proxy?cb=' + Date.now(), {cache:'no-store'})
+        .then(async r=>{
+          const t = document.getElementById('api-status');
+          const pre = document.getElementById('api-json');
+          const txt = await r.text();
+          if(r.ok){
+            t.innerHTML = '<span class="ok">OK:</span> API przez proxy odpowiedziało ' + r.status + '.';
+          }else{
+            t.innerHTML = '<span class="warn">UWAGA:</span> API przez proxy odpowiedziało statusem ' + r.status + '.';
+          }
+          pre.textContent = txt;
+        })
+        .catch(()=>{
+          document.getElementById('api-status').innerHTML = '<span class="err">BŁĄD:</span> proxy nie odpowiedziało.';
+        });
+    })();
+  </script>
+</body>
+</html>
