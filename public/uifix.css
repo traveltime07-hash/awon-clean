@@ -132,3 +132,22 @@ button, [role="option"] {
 @media (prefers-color-scheme:dark){
   #maintenance-card{ background:#0f172a; color:#f8fafc; border-color:#334155;}
 }
+
+/* ===== Feature banner ===== */
+#feature-banner{
+  position:fixed; left:0; right:0; bottom:0; z-index:99998;
+  background:#0f172a; color:#ffffff; text-align:center;
+  padding:10px 14px; font-weight:600; letter-spacing:.02em;
+  box-shadow:0 -6px 18px rgba(0,0,0,.12);
+}
+
+/* ===== Error overlay ===== */
+#error-mask{ position:fixed; inset:0; z-index:100000; display:flex; align-items:center; justify-content:center; background:rgba(15,23,42,.82); }
+#error-card{ background:#fff; color:#0f172a; border:1px solid #e5e7eb; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.25); max-width:860px; width:92%; padding:20px; }
+#error-card h2{ margin:0 0 10px; font-size:20px; }
+#error-card .err-title{ margin:4px 0 10px; color:#b91c1c; font-weight:700; }
+#error-card pre{ white-space:pre-wrap; max-height:50vh; overflow:auto; background:#f8fafc; padding:10px; border-radius:10px; }
+@media(prefers-color-scheme:dark){
+  #error-card{ background:#0f172a; color:#f8fafc; border-color:#334155; }
+  #error-card pre{ background:#111827; }
+}
