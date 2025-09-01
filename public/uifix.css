@@ -114,3 +114,21 @@ button, [role="option"] {
   user-select: none;
   pointer-events: none;
 }
+
+/* ===== Maintenance overlay ===== */
+#maintenance-mask{
+  position:fixed; inset:0; z-index:100000;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(15,23,42,0.8);
+}
+#maintenance-card{
+  background:#ffffff; color:#0f172a;
+  border:1px solid #e5e7eb; border-radius:16px;
+  max-width:720px; width:92%; padding:24px; text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+#maintenance-card h1{ font-size:22px; margin:0 0 8px; }
+#maintenance-card p{ margin:6px 0; }
+@media (prefers-color-scheme:dark){
+  #maintenance-card{ background:#0f172a; color:#f8fafc; border-color:#334155;}
+}
