@@ -4,24 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AWON — Wersja wdrożenia</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="canonical" href="https://awonsystem.pl/version.html">
   <link rel="stylesheet" href="/uifix.css">
   <link rel="stylesheet" href="/pages.css">
+  <link rel="preload" href="/pages.css" as="style">
 </head>
 <body>
-  <h1>AWON — Wersja wdrożenia</h1>
-  <div class="box grid">
-    <div>Środowisko: <code id="env"></code></div>
-    <div>Czas (UTC): <code id="time"></code></div>
-    <div>Commit: <code id="commit"></code></div>
-    <div>Autor: <code id="author"></code></div>
-    <div>Repo: <code id="repo"></code></div>
-    <div>Adres wdrożenia: <code id="url"></code></div>
-  </div>
-  <div class="box">
-    <div>Pełny JSON:</div>
-    <pre id="json" style="white-space:pre-wrap"></pre>
-  </div>
-  <p><a href="/">← Strona główna</a></p>
+  <a href="#main" class="skip-link">Pomiń do treści</a>
+  <main id="main">
+    <h1>AWON — Wersja wdrożenia</h1>
+    <div class="box grid">
+      <div>Środowisko: <code id="env"></code></div>
+      <div>Czas (UTC): <code id="time"></code></div>
+      <div>Commit: <code id="commit"></code></div>
+      <div>Autor: <code id="author"></code></div>
+      <div>Repo: <code id="repo"></code></div>
+      <div>Adres wdrożenia: <code id="url"></code></div>
+    </div>
+    <div class="box">
+      <div>Pełny JSON:</div>
+      <pre id="json" style="white-space:pre-wrap"></pre>
+    </div>
+    <p><a href="/">← Strona główna</a></p>
+  </main>
   <script defer src="/version.js"></script>
 </body>
 </html>

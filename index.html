@@ -10,20 +10,44 @@
     <meta name="x-banner-text" content="%VITE_BANNER_TEXT%">
     <meta name="x-log" content="%VITE_LOG_PAGEVIEWS%">
 
-    <!-- preconnect (wstępne połączenie) i dns-prefetch (wstępne DNS) -->
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <!-- SEO podstawy -->
+    <link rel="canonical" href="https://awonsystem.pl/">
+    <meta property="og:title" content="AWON — system zarządzania wynajmem" />
+    <meta property="og:description" content="AWON — prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://awonsystem.pl/" />
+    <meta property="og:image" content="https://awonsystem.pl/favicon.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AWON — system zarządzania wynajmem" />
+    <meta name="twitter:description" content="AWON — prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
+    <meta name="twitter:image" content="https://awonsystem.pl/favicon.svg" />
+
+    <!-- preconnect/dns-prefetch (szybsze pierwsze połączenie) -->
     <link rel="preconnect" href="https://api.awonsystem.pl" crossorigin>
     <link rel="dns-prefetch" href="//api.awonsystem.pl">
     <link rel="preconnect" href="https://vitals.vercel-insights.com" crossorigin>
     <link rel="dns-prefetch" href="//vitals.vercel-insights.com">
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- preload stałych CSS (bez hashy) -->
+    <link rel="preload" href="/uifix.css" as="style">
     <link rel="stylesheet" href="/uifix.css" />
   </head>
   <body>
-    <div id="root"></div>
+    <a href="#main" class="skip-link">Pomiń do treści</a>
+
+    <main id="main">
+      <div id="root"></div>
+    </main>
+
     <div id="env-badge" aria-hidden="true"></div>
 
-    <!-- porządek: najpierw bezpieczeństwo/diagnostyka, potem UI, na końcu app -->
     <script defer src="/error-overlay.js"></script>
     <script defer src="/lazy.js"></script>
     <script defer src="/banner.js"></script>

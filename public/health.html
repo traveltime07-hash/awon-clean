@@ -4,11 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AWON — Health</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="canonical" href="https://awonsystem.pl/health.html">
   <link rel="stylesheet" href="/uifix.css">
   <link rel="stylesheet" href="/pages.css">
+  <link rel="preload" href="/pages.css" as="style">
 </head>
 <body>
-  <div class="wrap">
+  <a href="#main" class="skip-link">Pomiń do treści</a>
+  <main id="main" class="wrap">
     <h1>AWON — Health</h1>
     <div class="box grid">
       <div>Hostname: <code id="host"></code></div>
@@ -18,13 +23,13 @@
     </div>
 
     <div class="box">
-      <h3 style="margin:0 0 8px">/health.json (statyczny)</h3>
+      <h3>/health.json (statyczny)</h3>
       <div id="loc-status">Ładowanie…</div>
       <pre id="loc-json" style="white-space:pre-wrap"></pre>
     </div>
 
     <div class="box">
-      <h3 style="margin:0 0 8px">API via proxy (/api/health-proxy → https://api.awonsystem.pl/health)</h3>
+      <h3>API via proxy (/api/health-proxy → https://api.awonsystem.pl/health)</h3>
       <div class="meta">Omijamy CORS, bo żądanie idzie z tej samej domeny.</div>
       <div id="api-status">Ładowanie…</div>
       <pre id="api-json" style="white-space:pre-wrap"></pre>
@@ -36,7 +41,7 @@
       <a href="/smoke.html" target="_blank">/smoke.html</a> •
       <a href="/select-test.html" target="_blank">/select-test.html</a>
     </div>
-  </div>
+  </main>
   <script defer src="/health.js"></script>
 </body>
 </html>
