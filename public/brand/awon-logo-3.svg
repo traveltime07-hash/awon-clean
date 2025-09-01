@@ -1,0 +1,15 @@
+<svg width="360" height="100" viewBox="0 0 360 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AWON">
+  <defs>
+    <style>
+      .t{font:700 36px system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    </style>
+  </defs>
+  <g transform="translate(8,16)">
+    <rect x="0" y="0" width="68" height="68" rx="14" fill="#0F172A"/>
+    <path d="M12 38 L34 20 L56 38" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="22" y="38" width="24" height="18" rx="3" fill="none" stroke="#22C55E" stroke-width="4"/>
+    <line x1="22" y1="43" x2="46" y2="43" stroke="#22C55E" stroke-width="3" />
+    <path d="M27 49 L31 53 L39 46" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text class="t" x="92" y="58" fill="#0F172A">AWON</text>
+</svg>
