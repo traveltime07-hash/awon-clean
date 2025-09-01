@@ -2,24 +2,67 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AWON — Strona główna</title>
-
-    <script>
-      // Jeśli wchodzimy przez app.awonsystem.pl, a ścieżka nie zaczyna się od /app,
-      // to przekieruj na /app (działa również dla podstron).
-      (function () {
-        var host = location.hostname.toLowerCase();
-        if (host.startsWith('app.') && !location.pathname.startsWith('/app')) {
-          var rest = location.pathname + location.search + location.hash;
-          location.replace('/app' + (rest === '/' ? '' : rest));
-        }
-      })();
-    </script>
+    <title>AWON</title>
+    <meta name="description" content="AWON — system zarządzania wynajmem obiektów noclegowych" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Znacznik środowiska (pokazuje się tylko na STAGING/DEV) -->
+    <div
+      id="env-badge"
+      style="
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        z-index: 99999;
+        display: none;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+        font-size: 12px;
+        letter-spacing: .08em;
+        font-weight: 700;
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0,0,0,.18);
+        opacity: .9;
+        user-select: none;
+        pointer-events: none;
+      ">
+    </div>
+
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Skrypt: pokaż badge dla STAGING/DEV, ukryj dla produkcji -->
+    <script>
+      (function () {
+        try {
+          var env = '%VITE_ENV%'; // Vite podmieni to przy buildzie
+          var host = (location && location.hostname || '').toLowerCase();
+
+          var label = '';
+          var bg = '#111827';
+
+          if ((env && env.toLowerCase() === 'preview') || host.startsWith('staging.')) {
+            label = 'STAGING';
+            bg = '#f59e0b';
+          } else if ((env && env.toLowerCase() === 'development') || host.startsWith('localhost')) {
+            label = 'DEV';
+            bg = '#2563eb';
+          }
+
+          if (label) {
+            var el = document.getElementById('env-badge');
+            el.textContent = label;
+            el.style.background = bg;
+            el.style.display = 'inline-flex';
+          }
+        } catch (e) {
+          console && console.warn && console.warn('ENV badge error:', e);
+        }
+      })();
+    </script>
   </body>
 </html>
