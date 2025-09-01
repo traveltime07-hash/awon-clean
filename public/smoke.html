@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWON — Smoke Test</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.5;margin:24px;color:#0f172a}
+    .wrap{max-width:720px;margin:auto}
+    h1{font-size:22px;margin:0 0 12px}
+    code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
+    .ok{color:#16a34a;font-weight:700}
+    .warn{color:#b45309;font-weight:700}
+    .err{color:#dc2626;font-weight:700}
+    .box{border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin:12px 0}
+    .meta{font-size:14px;color:#334155}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>AWON — szybki test działania (smoke test)</h1>
+    <div class="box">
+      <div>Hostname: <code id="host"></code></div>
+      <div>Czas (UTC): <code id="time"></code></div>
+      <div>Tryb (zgadywany po hostname): <code id="mode"></code></div>
+      <div>Plik znacznik: <a id="marker" href="/staging.txt" target="_blank">/staging.txt</a></div>
+      <div class="meta">Jeśli ten plik oraz /staging.txt ładują się na stagingu → podgląd działa. Na produkcji smoke.html nie musi istnieć.</div>
+    </div>
+    <div class="box">
+      <div>Start: <a href="/">/</a> • Ikona: <a href="/favicon.svg" target="_blank">/favicon.svg</a></div>
+    </div>
+    <div id="status" class="box"></div>
+  </div>
+  <script>
+    (function(){
+      const host = location.hostname.toLowerCase();
+      const elH = document.getElementById('host');
+      const elT = document.getElementById('time');
+      const elM = document.getElementById('mode');
+      const elS = document.getElementById('status');
+
+      elH.textContent = host;
+      elT.textContent = new Date().toISOString();
+
+      let mode = 'production';
+      if (host.startsWith('staging.')) mode = 'staging';
+      if (host.startsWith('localhost')) mode = 'dev';
+      elM.textContent = mode;
+
+      // szybkie sprawdzenie znacznika
+      fetch('/staging.txt', {cache:'no-store'}).then(r=>{
+        if(r.ok){
+          elS.innerHTML = '<span class="ok">OK:</span> /staging.txt jest dostępny.';
+        }else{
+          elS.innerHTML = '<span class="warn">UWAGA:</span> /staging.txt niedostępny (to nie jest błąd na produkcji).';
+        }
+      }).catch(()=>{
+        elS.innerHTML = '<span class="err">BŁĄD:</span> nie udało się pobrać /staging.txt';
+      });
+    })();
+  </script>
+</body>
+</html>
