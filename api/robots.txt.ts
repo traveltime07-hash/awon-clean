@@ -1,21 +1,31 @@
 export const config = { runtime: 'edge' };
 
 export default async function handler(req: Request): Promise<Response> {
-  const host = (req.headers.get('host') || '').toLowerCase();
-  const isStaging = host.startsWith('staging.');
+  const proto = req.headers.get('x-forwarded-proto') || 'https';
+  const host  = req.headers.get('x-forwarded-host') || req.headers.get('host') || '';
+  const base  = `${proto}://${host}`;
+  const isStaging = host.startsWith("staging.");
 
-  const body = isStaging
-    ? "User-agent: *\nDisallow: /\n"
-    : "User-agent: *\nAllow: /\nSitemap: https://awonsystem.pl/sitemap.xml\n";
+  // Uwaga: brand/thanks/health itp. i tak zabezpieczamy nagłówkiem X-Robots-Tag w vercel.json
+  const lines = isStaging
+    ? [
+        "User-agent: *",
+        "Disallow: /",
+        `# Staging: blokujemy indeksację`,
+        `# ${base}`
+      ]
+    : [
+        "User-agent: *",
+        "Disallow:",
+        `Sitemap: ${base}/sitemap.xml`,
+        `# Production: indeksacja dozwolona`
+      ];
 
-  const headers: Record<string, string> = {
-    "content-type": "text/plain; charset=utf-8",
-    "cache-control": "public, max-age=300"
-  };
-
-  if (isStaging) {
-    headers["x-robots-tag"] = "noindex, nofollow, noarchive";
-  }
-
-  return new Response(body, { status: 200, headers });
+  return new Response(lines.join("\n") + "\n", {
+    status: 200,
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "public, max-age=3600"
+    }
+  });
 }
