@@ -11,11 +11,9 @@
     <meta name="x-log" content="%VITE_LOG_PAGEVIEWS%">
     <meta name="x-log-errors" content="%VITE_LOG_ERRORS%">
 
-    <!-- PWA -->
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#0f172a">
 
-    <!-- SEO / OG -->
     <link rel="canonical" href="https://awonsystem.pl/">
     <meta property="og:title" content="AWON — system zarządzania wynajmem" />
     <meta property="og:description" content="Prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
@@ -24,13 +22,11 @@
     <meta property="og:image" content="https://awonsystem.pl/api/og" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- preconnect -->
     <link rel="preconnect" href="https://api.awonsystem.pl" crossorigin>
     <link rel="dns-prefetch" href="//api.awonsystem.pl">
     <link rel="preconnect" href="https://vitals.vercel-insights.com" crossorigin>
     <link rel="dns-prefetch" href="//vitals.vercel-insights.com">
 
-    <!-- CSS -->
     <link rel="preload" href="/uifix.css" as="style">
     <link rel="stylesheet" href="/uifix.css" />
     <link rel="stylesheet" href="/pages.css" />
@@ -38,25 +34,25 @@
   <body>
     <a href="#main" class="skip-link">Pomiń do treści</a>
 
-    <header class="site-header">
-      <div class="wrap bar">
-        <a href="/" class="brand"><img src="/logo/awon-mark.svg" alt="AWON" width="32" height="32"> AWON</a>
-        <nav class="nav">
+    <header class="aw-site-header">
+      <div class="aw-wrap aw-bar">
+        <a href="/" class="aw-brand"><img src="/logo/awon-mark.svg" alt="AWON" width="32" height="32"> AWON</a>
+        <nav class="aw-nav">
           <a href="/">Start</a>
           <a href="/contact.html">Kontakt</a>
         </nav>
-        <button id="theme-toggle" class="btn outline theme-toggle" aria-label="Przełącz motyw">
+        <button id="theme-toggle" class="btn outline aw-theme-toggle" aria-label="Przełącz motyw">
           <span id="theme-label">Ciemny</span>
         </button>
       </div>
     </header>
 
-    <main id="main" class="wrap">
+    <main id="main" class="aw-wrap">
       <div id="root"></div>
     </main>
 
-    <footer class="site-footer">
-      <div class="wrap bar">
+    <footer class="aw-site-footer">
+      <div class="aw-wrap aw-bar">
         <div>© <span id="year"></span> AWON</div>
         <div class="meta">awonsystem.pl</div>
       </div>
