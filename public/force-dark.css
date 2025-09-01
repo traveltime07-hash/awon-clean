@@ -1,0 +1,23 @@
+/* Wymuszenie dark na całej aplikacji (w tym /login) */
+:root { color-scheme: dark !important; }
+html, body { background:#0f172a !important; color:#e5e7eb !important; }
+a { color:#93c5fd; }
+hr { border-color:#263244; }
+button, .btn {
+  background:#1f2937; color:#e5e7eb; border:1px solid #334155;
+  border-radius:10px; padding:.6rem .9rem;
+}
+input, textarea, select {
+  background:#0b1220; color:#e5e7eb;
+  border:1px solid #263244; border-radius:10px;
+}
+input::placeholder, textarea::placeholder { color:#9aa4b2; }
+label { color:#cfe1ff; }
+.aw-card, .card, .panel, .modal, .sheet, .sheet-content {
+  background:#0b1220; border:1px solid #1f2937; border-radius:16px;
+}
+.navbar, header, .site-header { background:#0b1220; }
+.toast, .alert { background:#111827; border-color:#263244; color:#e5e7eb; }
+/* drobny spacing w menu (na wszelki wypadek) */
+.aw-nav{display:flex !important; gap:14px !important; align-items:center}
+.aw-nav a+a{margin-left:14px !important}
