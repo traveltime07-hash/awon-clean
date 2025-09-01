@@ -1,12 +1,7 @@
-import { parseCookies, verifySession } from "../_utils/auth";
-
-export default async function handler(req: any, res: any) {
-  const cookies = parseCookies(req);
-  const token = cookies["session"];
-  const session = verifySession(token);
-  if (!session) {
-    res.status(401).json({ error: "Brak sesji" });
-    return;
-  }
-  res.status(200).json({ user: { email: session.email, role: session.role } });
+export const config = { runtime: 'edge' };
+export default async function handler(_req: Request): Promise<Response> {
+  return new Response(JSON.stringify({ ok: true, endpoint: "auth/me", user: null }), {
+    status: 200,
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "access-control-allow-origin": "*" }
+  });
 }

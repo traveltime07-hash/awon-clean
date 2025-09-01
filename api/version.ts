@@ -1,21 +1,25 @@
 export const config = { runtime: 'edge' };
 
-export default async function handler(_req: Request): Promise<Response> {
-  const env = (process.env.VERCEL_ENV || 'unknown') as string;
-  const commit = (process.env.VERCEL_GIT_COMMIT_SHA || '') as string;
-  const body = JSON.stringify({
-    env,
-    commit,
-    commitShort: commit ? commit.substring(0, 7) : '',
-    message: process.env.VERCEL_GIT_COMMIT_MESSAGE || '',
-    author: process.env.VERCEL_GIT_COMMIT_AUTHOR_LOGIN || process.env.VERCEL_GIT_COMMIT_AUTHOR_NAME || '',
-    repoOwner: process.env.VERCEL_GIT_REPO_OWNER || '',
-    repoSlug: process.env.VERCEL_GIT_REPO_SLUG || '',
-    vercelUrl: process.env.VERCEL_URL || '',
-    timestamp: new Date().toISOString()
-  }, null, 2);
+function env(name: string, fallback = ''): string {
+  // w Edge nie ma "process" w TS – czytamy z globalThis, żeby TS się nie czepiał
+  const p = (globalThis as any)?.process?.env;
+  return (p && typeof p[name] === 'string') ? String(p[name]) : fallback;
+}
 
-  return new Response(body, {
+export default async function handler(_req: Request): Promise<Response> {
+  const data = {
+    env: env('VERCEL_ENV', 'unknown'),
+    commit: env('VERCEL_GIT_COMMIT_SHA'),
+    commitShort: env('VERCEL_GIT_COMMIT_SHA').slice(0, 7),
+    message: env('VERCEL_GIT_COMMIT_MESSAGE'),
+    author: env('VERCEL_GIT_COMMIT_AUTHOR_LOGIN') || env('VERCEL_GIT_COMMIT_AUTHOR_NAME'),
+    repoOwner: env('VERCEL_GIT_REPO_OWNER'),
+    repoSlug: env('VERCEL_GIT_REPO_SLUG'),
+    vercelUrl: env('VERCEL_URL'),
+    timestamp: new Date().toISOString()
+  };
+
+  return new Response(JSON.stringify(data, null, 2), {
     status: 200,
     headers: {
       "content-type": "application/json; charset=utf-8",
