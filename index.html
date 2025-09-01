@@ -6,12 +6,21 @@
     <title>AWON</title>
     <meta name="description" content="AWON — system zarządzania wynajmem obiektów noclegowych" />
     <meta name="x-maintenance" content="%VITE_MAINTENANCE%">
+    <meta name="x-banner" content="%VITE_SHOW_BANNER%">
+    <meta name="x-banner-text" content="%VITE_BANNER_TEXT%">
+    <meta name="x-log" content="%VITE_LOG_PAGEVIEWS%">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/uifix.css" />
   </head>
   <body>
     <div id="root"></div>
     <div id="env-badge" aria-hidden="true"></div>
+
+    <!-- porządek: najpierw bezpieczeństwo/diagnostyka, potem UI, na końcu app -->
+    <script defer src="/error-overlay.js"></script>
+    <script defer src="/lazy.js"></script>
+    <script defer src="/banner.js"></script>
+    <script defer src="/log.js"></script>
     <script defer src="/maintenance.js"></script>
     <script defer src="/env-badge.js"></script>
     <script type="module" src="/src/main.tsx"></script>
