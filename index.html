@@ -9,6 +9,7 @@
     <meta name="x-banner" content="%VITE_SHOW_BANNER%">
     <meta name="x-banner-text" content="%VITE_BANNER_TEXT%">
     <meta name="x-log" content="%VITE_LOG_PAGEVIEWS%">
+    <meta name="x-log-errors" content="%VITE_LOG_ERRORS%">
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.webmanifest">
@@ -29,13 +30,13 @@
     <meta name="twitter:description" content="AWON — prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
     <meta name="twitter:image" content="https://awonsystem.pl/favicon.svg" />
 
-    <!-- preconnect/dns-prefetch (szybsze pierwsze połączenie) -->
+    <!-- preconnect/dns-prefetch -->
     <link rel="preconnect" href="https://api.awonsystem.pl" crossorigin>
     <link rel="dns-prefetch" href="//api.awonsystem.pl">
     <link rel="preconnect" href="https://vitals.vercel-insights.com" crossorigin>
     <link rel="dns-prefetch" href="//vitals.vercel-insights.com">
 
-    <!-- preload stałych CSS (bez hashy) -->
+    <!-- preload stałych CSS -->
     <link rel="preload" href="/uifix.css" as="style">
     <link rel="stylesheet" href="/uifix.css" />
   </head>
@@ -48,6 +49,7 @@
 
     <div id="env-badge" aria-hidden="true"></div>
 
+    <script defer src="/errors-log.js"></script>
     <script defer src="/error-overlay.js"></script>
     <script defer src="/lazy.js"></script>
     <script defer src="/banner.js"></script>

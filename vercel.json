@@ -21,13 +21,32 @@
     { "source": "/", "headers": [
       { "key": "Cache-Control", "value": "no-store" }
     ]},
-    { "source": "/health.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/version.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/select-test.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/smoke.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/log-test.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/error-test.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/env-dump.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+
+    { "source": "/thanks.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+    { "source": "/health.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+    { "source": "/version.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+    { "source": "/select-test.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+    { "source": "/smoke.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+    { "source": "/log-test.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+    { "source": "/error-test.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+    { "source": "/env-dump.html", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+    ]},
+
     { "source": "/(.*)", "headers": [
       { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
       { "key": "X-Content-Type-Options", "value": "nosniff" },

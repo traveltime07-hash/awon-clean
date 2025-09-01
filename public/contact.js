@@ -3,16 +3,18 @@
   var info = document.getElementById('contact-info');
 
   function setInfo(msg, ok){
+    if(!info) return;
     info.textContent = msg;
     info.className = ok ? 'ok' : 'err';
   }
+
+  if(!form){ return; }
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
     setInfo('Wysyłanie…', true);
 
     var fd = new FormData(form);
-    // Możemy wysłać jako JSON (czytelniejsze w logach)
     var payload = Object.fromEntries(fd.entries());
 
     fetch('/api/contact', {
@@ -23,8 +25,8 @@
     .then(function(r){ return r.json().catch(function(){ return { ok:false, error:'Brak JSON' }; }); })
     .then(function(d){
       if(d && d.ok){
-        setInfo('Dziękujemy! Odezwiemy się wkrótce.', true);
-        form.reset();
+        // PRZEKIEROWANIE po sukcesie (z parametrem info dla ewentualnej diagnostyki)
+        location.href = '/thanks.html?from=contact&ts=' + encodeURIComponent(new Date().toISOString());
       }else{
         setInfo('Ups… '+(d && d.error ? d.error : 'spróbuj ponownie'), false);
       }
