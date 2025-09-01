@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWON — CSP test</title>
+  <link rel="stylesheet" href="/uifix.css">
+  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:24px}</style>
+</head>
+<body>
+  <h1>AWON — CSP (Report-Only) test</h1>
+  <p>Ta strona zawiera <b>inline script</b>. W trybie Report-Only nie blokujemy, ale powstanie raport CSP do <code>/api/csp-report</code>.</p>
+  <script>console.log('Inline script działa (Report-Only).');</script>
+  <p><a href="/">← Strona główna</a></p>
+</body>
+</html>
