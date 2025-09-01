@@ -1,31 +1,32 @@
 export const config = { runtime: 'edge' };
 
 export default async function handler(req: Request): Promise<Response> {
-  const proto = req.headers.get('x-forwarded-proto') || 'https';
-  const host  = req.headers.get('x-forwarded-host') || req.headers.get('host') || '';
+  const u = new URL(req.url);
+  const host = u.hostname;                      // <- prawdziwy host z URL
+  const proto = u.protocol.replace(":", "") || "https";
   const base  = `${proto}://${host}`;
-  const isStaging = host.startsWith("staging.");
+  const isStaging = host.startsWith("staging."); // <- pewna detekcja
 
-  // Uwaga: brand/thanks/health itp. i tak zabezpieczamy nagłówkiem X-Robots-Tag w vercel.json
   const lines = isStaging
     ? [
         "User-agent: *",
         "Disallow: /",
-        `# Staging: blokujemy indeksację`,
+        `# staging: blokada indeksacji`,
         `# ${base}`
       ]
     : [
         "User-agent: *",
-        "Disallow:",
+        "Disallow:",                       // standard (pusto = dozwolone wszystko)
         `Sitemap: ${base}/sitemap.xml`,
-        `# Production: indeksacja dozwolona`
+        `# production: indeksacja dozwolona`
       ];
 
   return new Response(lines.join("\n") + "\n", {
     status: 200,
     headers: {
       "content-type": "text/plain; charset=utf-8",
-      "cache-control": "public, max-age=3600"
+      "cache-control": "no-store",        // <- brak cache
+      "vary": "Host"                      // <- rozdziel cache per host gdyby jednak
     }
   });
 }
