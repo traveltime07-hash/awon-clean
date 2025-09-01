@@ -36,14 +36,14 @@
     </div>
 
     <div class="box">
-      <h3 style="margin:0 0 8px">API (próba GET do https://api.awonsystem.pl/health)</h3>
-      <div class="meta">Może być zablokowane przez CORS (mechanizm bezpieczeństwa przeglądarki) — wtedy to nie jest błąd frontu.</div>
+      <h3 style="margin:0 0 8px">API via proxy (/api/health-proxy → https://api.awonsystem.pl/health)</h3>
+      <div class="meta">Omijamy CORS, bo żądanie idzie z tej samej domeny.</div>
       <div id="api-status">Ładowanie…</div>
       <pre id="api-json" style="white-space:pre-wrap"></pre>
     </div>
 
     <div class="box">
-      Szybkie linki: 
+      Szybkie linki:
       <a href="/staging.txt" target="_blank">/staging.txt</a> •
       <a href="/smoke.html" target="_blank">/smoke.html</a> •
       <a href="/select-test.html" target="_blank">/select-test.html</a>
@@ -75,20 +75,21 @@
           document.getElementById('loc-status').innerHTML = '<span class="err">BŁĄD:</span> nie udało się pobrać /health.json';
         });
 
-      // API health (może blokować CORS — wtedy INFO)
-      fetch('https://api.awonsystem.pl/health?cb=' + Date.now())
+      // API przez nasz proxy (brak CORS)
+      fetch('/api/health-proxy?cb=' + Date.now(), {cache:'no-store'})
         .then(async r=>{
           const t = document.getElementById('api-status');
           const pre = document.getElementById('api-json');
+          const txt = await r.text();
           if(r.ok){
-            t.innerHTML = '<span class="ok">OK:</span> API odpowiedziało ' + r.status + '.';
-            pre.textContent = await r.text();
+            t.innerHTML = '<span class="ok">OK:</span> API przez proxy odpowiedziało ' + r.status + '.';
           }else{
-            t.innerHTML = '<span class="warn">UWAGA:</span> API odpowiedziało statusem ' + r.status + ' (to może być normalne w zależności od konfiguracji).';
+            t.innerHTML = '<span class="warn">UWAGA:</span> API przez proxy odpowiedziało statusem ' + r.status + '.';
           }
+          pre.textContent = txt;
         })
         .catch(()=>{
-          document.getElementById('api-status').innerHTML = '<span class="warn">INFO:</span> Brak odpowiedzi API lub CORS — front i hosting działają, ale API może wymagać osobnej diagnostyki.';
+          document.getElementById('api-status').innerHTML = '<span class="err">BŁĄD:</span> proxy nie odpowiedziało.';
         });
     })();
   </script>
