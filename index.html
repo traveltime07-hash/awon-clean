@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AWON</title>
     <meta name="description" content="AWON — system zarządzania wynajmem obiektów noclegowych" />
+    <meta name="x-maintenance" content="%VITE_MAINTENANCE%">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/uifix.css" />
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Znacznik środowiska (bez inline stylu/skryptu) -->
     <div id="env-badge" aria-hidden="true"></div>
-
-    <!-- Najpierw nasz badge, potem aplikacja -->
+    <script defer src="/maintenance.js"></script>
     <script defer src="/env-badge.js"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
