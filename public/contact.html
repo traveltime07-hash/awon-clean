@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontakt — AWON</title>
+  <meta name="description" content="Skontaktuj się z zespołem AWON.">
+  <link rel="canonical" href="https://awonsystem.pl/contact.html">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="stylesheet" href="/uifix.css">
+  <link rel="stylesheet" href="/pages.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Pomiń do treści</a>
+  <main id="main" class="wrap">
+    <h1>Kontakt</h1>
+    <div class="box">
+      <form id="contact-form" novalidate>
+        <div class="grid">
+          <label>Imię i nazwisko
+            <input name="name" type="text" required style="width:100%;padding:8px">
+          </label>
+          <label>E-mail
+            <input name="email" type="email" required style="width:100%;padding:8px">
+          </label>
+        </div>
+        <label>Wiadomość
+          <textarea name="message" rows="6" required style="width:100%;padding:8px"></textarea>
+        </label>
+
+        <!-- Honeypot (ukryte pole dla botów) -->
+        <div style="position:absolute;left:-9999px">
+          <label>Leave this field empty:
+            <input name="website" type="text" tabindex="-1" autocomplete="off">
+          </label>
+        </div>
+
+        <button type="submit" style="margin-top:12px">Wyślij</button>
+        <div id="contact-info" class="meta" style="margin-top:10px"></div>
+      </form>
+    </div>
+    <p><a href="/">← Strona główna</a></p>
+  </main>
+  <script defer src="/contact.js"></script>
+</body>
+</html>
