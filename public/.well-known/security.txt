@@ -1,0 +1,4 @@
+Contact: mailto:kontakt@awonsystem.pl
+Policy: https://awonsystem.pl/
+Preferred-Languages: pl, en
+Canonical: https://awonsystem.pl/.well-known/security.txt
