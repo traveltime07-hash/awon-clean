@@ -28,9 +28,6 @@
     </div>
     <p class="meta" style="color:#334155;margin-top:14px">Jeśli błąd się powtarza, zgłoś nam adres: <code id="path"></code></p>
   </main>
-  <script defer>
-    // tylko odczyt (brak inline skryptów krytycznych) – zgodne z CSP
-    document.getElementById('path').textContent = location.pathname;
-  </script>
+  <script defer src="/404.js"></script>
 </body>
 </html>
