@@ -1,153 +1,45 @@
-/* AWON — UI Fix Pack (listy rozwijane, kontrast, focus)
-   Działa globalnie i nie zmienia logiki aplikacji. */
-
-:root { color-scheme: light dark; }
-
-/* --- Pola i selecty (jasny tryb) --- */
-select,
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea {
-  color: #0f172a;            /* ciemny granatowy tekst */
-  background: #ffffff;
-  border: 1px solid #e5e7eb; /* jasna ramka */
-  border-radius: 8px;
-  padding: 8px 10px;
+/* ====== AWON Base Utilities (Dark Theme by default) ====== */
+:root{
+  --brand:#0F172A; --accent:#22C55E;
+  --bg:#0B1220; --surface:#0F172A;
+  --text:#E5E7EB; --muted:#94A3B8;
+  --border:rgba(148,163,184,.22); --input:#0D1526;
+  --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+/* Jasny motyw po włączeniu przełącznika */
+:root[data-theme="light"]{
+  --bg:#ffffff; --surface:#F8FAFC;
+  --text:#0F172A; --muted:#475569;
+  --border:#E2E8F0; --input:#ffffff;
+  --shadow:0 6px 18px rgba(0,0,0,.08);
 }
 
-select:focus,
-input:focus,
-textarea:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(59,130,246,.35); /* delikatny focus */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text);background:var(--bg);line-height:1.55;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
 }
-
-/* Elementy opcji w select (nie wszędzie działa 100%, ale poprawia większość przeglądarek) */
-select option {
-  color: #0f172a;
-  background: #ffffff;
+::selection{background:rgba(34,197,94,.28);color:#fff}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+h1{font-size:clamp(28px,2.6vw,34px);line-height:1.2;margin:0 0 16px}
+h2{font-size:clamp(22px,2vw,26px);line-height:1.25;margin:24px 0 12px}
+h3{font-size:18px;line-height:1.25;margin:18px 0 8px}
+img{max-width:100%;height:auto;display:block}
+.meta{color:var(--muted);font-size:13px}.ok{color:#22c55e}.err{color:#f87171}
+button,.btn{
+  appearance:none;border:0;cursor:pointer;background:var(--accent);color:#0b111f;
+  padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);font-weight:700;
+  transition:transform .05s ease,filter .15s ease
 }
-
-/* --- Ciemny tryb (.dark na <html>/<body> albo preferencja systemu) --- */
-@media (prefers-color-scheme: dark) {
-  select,
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  textarea {
-    color: #f8fafc;          /* bardzo jasny tekst */
-    background: #0f172a;     /* granatowe tło */
-    border-color: #334155;   /* ciemniejsza ramka */
-  }
-  select option {
-    color: #f8fafc;
-    background: #111827;
-  }
-}
-
-/* Jeśli aplikacja używa klasy .dark do przełączania trybu: */
-.dark select,
-.dark input[type="text"],
-.dark input[type="email"],
-.dark input[type="password"],
-.dark textarea {
-  color: #f8fafc;
-  background: #0f172a;
-  border-color: #334155;
-}
-.dark select option {
-  color: #f8fafc;
-  background: #111827;
-}
-
-/* --- Popularne kontenery list (biblioteki/ARIA) --- */
-[role="listbox"],
-.dropdown-menu,
-.menu,
-.select-content,
-[role="menu"] {
-  color: #0f172a;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-}
-
-.dark [role="listbox"],
-.dark .dropdown-menu,
-.dark .menu,
-.dark .select-content,
-.dark [role="menu"],
-@media (prefers-color-scheme: dark) {
-  [role="listbox"],
-  .dropdown-menu,
-  .menu,
-  .select-content,
-  [role="menu"] {
-    color: #f8fafc;
-    background: #0f172a;
-    border-color: #334155;
-  }
-}
-
-/* Ułatwienie kliknięcia */
-button, [role="option"] {
-  cursor: pointer;
-}
-
-/* ===== ENV badge (STAGING/DEV) ===== */
-#env-badge{
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 99999;
-  display: none;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
-  font-size: 12px;
-  letter-spacing: .08em;
-  font-weight: 700;
-  color: #ffffff;
-  box-shadow: 0 4px 10px rgba(0,0,0,.18);
-  opacity: .9;
-  user-select: none;
-  pointer-events: none;
-}
-
-/* ===== Maintenance overlay ===== */
-#maintenance-mask{
-  position:fixed; inset:0; z-index:100000;
-  display:flex; align-items:center; justify-content:center;
-  background: rgba(15,23,42,0.8);
-}
-#maintenance-card{
-  background:#ffffff; color:#0f172a;
-  border:1px solid #e5e7eb; border-radius:16px;
-  max-width:720px; width:92%; padding:24px; text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
-}
-#maintenance-card h1{ font-size:22px; margin:0 0 8px; }
-#maintenance-card p{ margin:6px 0; }
-@media (prefers-color-scheme:dark){
-  #maintenance-card{ background:#0f172a; color:#f8fafc; border-color:#334155;}
-}
-
-/* ===== Feature banner ===== */
-#feature-banner{
-  position:fixed; left:0; right:0; bottom:0; z-index:99998;
-  background:#0f172a; color:#ffffff; text-align:center;
-  padding:10px 14px; font-weight:600; letter-spacing:.02em;
-  box-shadow:0 -6px 18px rgba(0,0,0,.12);
-}
-
-/* ===== Error overlay ===== */
-#error-mask{ position:fixed; inset:0; z-index:100000; display:flex; align-items:center; justify-content:center; background:rgba(15,23,42,.82); }
-#error-card{ background:#fff; color:#0f172a; border:1px solid #e5e7eb; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.25); max-width:860px; width:92%; padding:20px; }
-#error-card h2{ margin:0 0 10px; font-size:20px; }
-#error-card .err-title{ margin:4px 0 10px; color:#b91c1c; font-weight:700; }
-#error-card pre{ white-space:pre-wrap; max-height:50vh; overflow:auto; background:#f8fafc; padding:10px; border-radius:10px; }
-@media(prefers-color-scheme:dark){
-  #error-card{ background:#0f172a; color:#f8fafc; border-color:#334155; }
-  #error-card pre{ background:#111827; }
-}
+button:hover,.btn:hover{filter:brightness(.95);text-decoration:none}
+button:active,.btn:active{transform:translateY(1px)}
+.btn.outline{background:transparent;color:var(--text);border:1px solid var(--border);box-shadow:none}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{
+  position:fixed;left:12px;top:12px;width:auto;height:auto;z-index:100001;
+  background:var(--brand);color:#fff;padding:8px 12px;border-radius:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,.45);outline:none}
+hr{border:0;height:1px;background:var(--border);margin:24px 0}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}

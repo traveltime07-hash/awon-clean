@@ -1,47 +1,36 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kontakt — AWON</title>
-  <meta name="description" content="Skontaktuj się z zespołem AWON.">
-  <link rel="canonical" href="https://awonsystem.pl/contact.html">
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0f172a">
-  <link rel="stylesheet" href="/uifix.css">
-  <link rel="stylesheet" href="/pages.css">
+  <link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#0f172a">
+  <script>try{var s=localStorage.getItem('theme');if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}</script>
+  <link rel="stylesheet" href="/uifix.css?v=3"><link rel="stylesheet" href="/pages.css?v=3">
 </head>
 <body>
   <a href="#main" class="skip-link">Pomiń do treści</a>
-  <main id="main" class="wrap">
-    <h1>Kontakt</h1>
-    <div class="box">
-      <form id="contact-form" novalidate>
-        <div class="grid">
-          <label>Imię i nazwisko
-            <input name="name" type="text" required style="width:100%;padding:8px">
-          </label>
-          <label>E-mail
-            <input name="email" type="email" required style="width:100%;padding:8px">
-          </label>
-        </div>
-        <label>Wiadomość
-          <textarea name="message" rows="6" required style="width:100%;padding:8px"></textarea>
-        </label>
+  <header class="aw-site-header">
+    <div class="aw-wrap aw-bar">
+      <a href="/" class="aw-brand"><img src="/logo/awon-mark.svg" alt="" width="28" height="28"> AWON</a>
+      <nav class="aw-nav"><a href="/">Start</a><a href="/contact.html">Kontakt</a></nav>
+      <button id="theme-toggle" class="btn outline aw-theme-toggle" aria-label="Przełącz motyw"><span id="theme-label">Ciemny</span></button>
+    </div>
+  </header>
 
-        <!-- Honeypot (ukryte pole dla botów) -->
-        <div style="position:absolute;left:-9999px">
-          <label>Leave this field empty:
-            <input name="website" type="text" tabindex="-1" autocomplete="off">
-          </label>
-        </div>
-
-        <button type="submit" style="margin-top:12px">Wyślij</button>
-        <div id="contact-info" class="meta" style="margin-top:10px"></div>
+  <main id="main" class="aw-wrap narrow">
+    <div class="aw-card">
+      <h1>Kontakt</h1>
+      <form method="post" action="/api/contact?redirect=/thanks.html" class="aw-form">
+        <div class="aw-row"><label>Imię i nazwisko <input name="name" required minlength="2" maxlength="100" autocomplete="name"></label></div>
+        <div class="aw-row"><label>E-mail <input type="email" name="email" required maxlength="160" autocomplete="email"></label></div>
+        <div class="aw-row"><label>Wiadomość <textarea name="message" required minlength="10" maxlength="2000" rows="6"></textarea></label></div>
+        <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;"><label>Strona (zostaw puste)<input name="website" autocomplete="off"></label></div>
+        <button type="submit">Wyślij</button>
       </form>
     </div>
-    <p><a href="/">← Strona główna</a></p>
   </main>
-  <script defer src="/contact.js"></script>
+
+  <footer class="aw-site-footer"><div class="aw-wrap aw-bar"><div>© <span id="year"></span> AWON</div><div class="meta">awonsystem.pl</div></div></footer>
+  <script defer src="/theme.js"></script><script defer src="/footer.js"></script>
 </body>
 </html>

@@ -1,29 +1,33 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nie znaleziono strony — AWON</title>
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0f172a">
-  <link rel="canonical" href="https://awonsystem.pl/">
-  <link rel="stylesheet" href="/uifix.css">
-  <link rel="stylesheet" href="/pages.css">
-  <link rel="preload" href="/pages.css" as="style">
+  <link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#0f172a">
+  <meta property="og:image" content="https://awonsystem.pl/api/og?title=404%20%E2%80%94%20AWON">
+  <link rel="stylesheet" href="/uifix.css"><link rel="stylesheet" href="/pages.css">
 </head>
-<body class="page-404">
+<body class="aw-page-404">
   <a href="#main" class="skip-link">Pomiń do treści</a>
-  <main id="main" class="card">
-    <h1>404 — tej strony nie znaleźliśmy</h1>
-    <p>Być może adres jest nieaktualny lub literówka. Skorzystaj z linków poniżej.</p>
-    <div class="links">
-      <a class="btn" href="/">← Strona główna</a>
-      <a class="btn" href="/health.html">Health</a>
-      <a class="btn" href="/select-test.html">Test selectów</a>
-      <a class="btn" href="/smoke.html">Smoke test</a>
+  <header class="aw-site-header"><div class="aw-wrap aw-bar">
+    <a href="/" class="aw-brand"><img src="/logo/awon-mark.svg" alt="" width="28" height="28"> AWON</a>
+    <nav class="aw-nav"><a href="/">Start</a><a href="/contact.html">Kontakt</a></nav>
+    <button id="theme-toggle" class="btn outline aw-theme-toggle" aria-label="Przełącz motyw"><span id="theme-label">Ciemny</span></button>
+  </div></header>
+
+  <main id="main" class="aw-wrap">
+    <div class="aw-card">
+      <h1>404 — tej strony nie znaleźliśmy</h1>
+      <p>Sprawdź adres lub skorzystaj z linków poniżej.</p>
+      <div class="aw-links">
+        <a class="btn outline" href="/">← Strona główna</a>
+        <a class="btn" href="/contact.html">Kontakt</a>
+      </div>
+      <p class="meta aw-mt-14">Jeśli błąd się powtarza, zgłoś nam adres: <code id="path"></code></p>
     </div>
-    <p class="meta mt-14">Jeśli błąd się powtarza, zgłoś nam adres: <code id="path"></code></p>
   </main>
-  <script defer src="/404.js"></script>
+
+  <footer class="aw-site-footer"><div class="aw-wrap aw-bar"><div>© <span id="year"></span> AWON</div><div class="meta">awonsystem.pl</div></div></footer>
+  <script defer src="/theme.js"></script><script defer src="/footer.js"></script><script defer src="/404.js"></script>
 </body>
 </html>
