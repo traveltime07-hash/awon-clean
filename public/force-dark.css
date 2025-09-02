@@ -166,3 +166,59 @@ div[class*="container"] {
 .route-login [style*="background-color: rgb(249 250 251"] {
   background:#0f172a !important;
 }
+
+/* ===== login + rejestracja ===== */
+.route-login body,
+.route-register body,
+.route-rejestracja body,
+.route-login #root, .route-register #root, .route-rejestracja #root,
+.route-login main,  .route-register main,  .route-rejestracja main,
+.route-login .min-h-screen, .route-register .min-h-screen, .route-rejestracja .min-h-screen,
+.route-login .app, .route-register .app, .route-rejestracja .app,
+.route-login .content, .route-register .content, .route-rejestracja .content {
+  background:#0f172a !important;
+  color:#e5e7eb !important;
+  min-height:100vh;
+}
+
+/* zdejmij jasne tła */
+.route-login [class*="bg-"]:not(button):not(.btn):not([role="button"]),
+.route-register [class*="bg-"]:not(button):not(.btn):not([role="button"]),
+.route-rejestracja [class*="bg-"]:not(button):not(.btn):not([role="button"]) {
+  background:#0f172a !important;
+}
+.route-login .bg-white, .route-register .bg-white, .route-rejestracja .bg-white,
+.route-login .bg-gray-50, .route-register .bg-gray-50, .route-rejestracja .bg-gray-50 {
+  background:#0f172a !important;
+}
+
+/* jasny tekst → jasny w ciemnym motywie */
+.route-login .text-black, .route-register .text-black, .route-rejestracja .text-black,
+.route-login .text-gray-800, .route-register .text-gray-800, .route-rejestracja .text-gray-800 {
+  color:#e5e7eb !important;
+}
+
+/* karta/formularz */
+.route-login .auth-card, .route-register .auth-card, .route-rejestracja .auth-card,
+.route-login .login-card, .route-register .login-card, .route-rejestracja .login-card,
+.route-login .card, .route-register .card, .route-rejestracja .card {
+  background:#0b1220 !important;
+  border:1px solid #1f2937 !important;
+  border-radius:16px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+.route-login form input, .route-register form input, .route-rejestracja form input,
+.route-login form textarea, .route-register form textarea, .route-rejestracja form textarea,
+.route-login form select, .route-register form select, .route-rejestracja form select {
+  background:#0b1220 !important; color:#e5e7eb !important;
+  border:1px solid #263244 !important; border-radius:10px !important;
+}
+.route-login form input::placeholder, .route-register form input::placeholder, .route-rejestracja form input::placeholder,
+.route-login form textarea::placeholder, .route-register form textarea::placeholder, .route-rejestracja form textarea::placeholder {
+  color:#9aa4b2 !important;
+}
+.route-login form button, .route-register form button, .route-rejestracja form button,
+.route-login form .btn,    .route-register form .btn,    .route-rejestracja form .btn {
+  background:#1f2937 !important; color:#e5e7eb !important;
+  border:1px solid #334155 !important; border-radius:10px !important;
+}
