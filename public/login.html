@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Logowanie — AWON</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Vite / main -->
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body class="bg-white text-slate-900 antialiased">
+    <!-- Header (jasny) -->
+    <header class="sticky top-0 z-40 bg-white border-b border-slate-200">
+      <div class="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between gap-4">
+        <!-- Logo (po lewej) -->
+        <a href="/" class="flex items-center gap-2 text-slate-900">
+          <img src="/logo/awon-logo.svg" alt="AWON" class="h-6 w-auto" />
+          <span class="sr-only">AWON</span>
+        </a>
+
+        <!-- Menu (duże ekrany) -->
+        <nav class="hidden md:flex items-center gap-6 text-slate-700">
+          <a href="/" class="hover:text-slate-900">Start</a>
+          <a href="/contact.html" class="hover:text-slate-900">Kontakt</a>
+        </nav>
+
+        <!-- CTA -->
+        <div class="flex items-center gap-2">
+          <a href="/rejestracja" class="inline-flex items-center justify-center rounded-md border border-slate-200 bg-white px-4 h-9 text-sm font-medium text-slate-700 hover:bg-slate-50">
+            Załóż konto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- STAGING BADGE (widoczny na stagingu) -->
+    <div id="stage-badge"
+         class="hidden fixed top-3 right-3 z-50 rounded-full
+                bg-amber-600 text-white px-3 py-1 text-xs font-semibold tracking-wide shadow">
+      STAGING
+    </div>
+    <script type="module" src="/src/scripts/stage-badge.ts"></script>
+
+    <!-- Main -->
+    <main class="mx-auto max-w-6xl px-4 py-12">
+      <div class="mx-auto max-w-md">
+        <h1 class="text-2xl font-semibold mb-6 text-slate-900">Zaloguj się</h1>
+
+        <form action="/api/auth/login" method="post" class="space-y-4 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <!-- Po zalogowaniu przejście do /admin -->
+          <input type="hidden" name="redirect" value="/admin" />
+
+          <div class="space-y-1">
+            <label for="email" class="block text-sm text-slate-700">E-mail</label>
+            <input id="email" name="email" type="email" required
+                   class="block w-full rounded-md border border-slate-200 bg-slate-50 px-3 h-10
+                          placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                   placeholder="nazwa@domena.pl" />
+          </div>
+
+          <div class="space-y-1">
+            <label for="password" class="block text-sm text-slate-700">Hasło</label>
+            <input id="password" name="password" type="password" required
+                   class="block w-full rounded-md border border-slate-200 bg-slate-50 px-3 h-10
+                          placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                   placeholder="••••••••" />
+          </div>
+
+          <button type="submit"
+                  class="w-full inline-flex items-center justify-center rounded-md
+                         bg-indigo-600 hover:bg-indigo-700 h-10 text-sm font-semibold text-white">
+            Zaloguj
+          </button>
+
+          <p class="text-sm text-slate-600">
+            Nie masz konta?
+            <a href="/rejestracja" class="text-indigo-600 underline hover:no-underline">Zarejestruj się</a>
+          </p>
+        </form>
+      </div>
+    </main>
+
+    <footer class="mx-auto max-w-6xl px-4 py-10 text-sm text-slate-500">
+      © 2025 AWON
+    </footer>
+  </body>
+</html>
