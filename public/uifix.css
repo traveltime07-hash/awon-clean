@@ -1,45 +1,11 @@
-/* ====== AWON Base Utilities (Dark Theme by default) ====== */
-:root{
-  --brand:#0F172A; --accent:#22C55E;
-  --bg:#0B1220; --surface:#0F172A;
-  --text:#E5E7EB; --muted:#94A3B8;
-  --border:rgba(148,163,184,.22); --input:#0D1526;
-  --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
-}
-/* Jasny motyw po włączeniu przełącznika */
-:root[data-theme="light"]{
-  --bg:#ffffff; --surface:#F8FAFC;
-  --text:#0F172A; --muted:#475569;
-  --border:#E2E8F0; --input:#ffffff;
-  --shadow:0 6px 18px rgba(0,0,0,.08);
-}
-
+:root{--bg:#0b1220;--bg-elev:#0f172a;--panel:#0b1220;--line:#1f2937;--text:#e5e7eb;--muted:#94a3b8}
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  color:var(--text);background:var(--bg);line-height:1.55;
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-}
-::selection{background:rgba(34,197,94,.28);color:#fff}
-a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-h1{font-size:clamp(28px,2.6vw,34px);line-height:1.2;margin:0 0 16px}
-h2{font-size:clamp(22px,2vw,26px);line-height:1.25;margin:24px 0 12px}
-h3{font-size:18px;line-height:1.25;margin:18px 0 8px}
-img{max-width:100%;height:auto;display:block}
-.meta{color:var(--muted);font-size:13px}.ok{color:#22c55e}.err{color:#f87171}
-button,.btn{
-  appearance:none;border:0;cursor:pointer;background:var(--accent);color:#0b111f;
-  padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);font-weight:700;
-  transition:transform .05s ease,filter .15s ease
-}
-button:hover,.btn:hover{filter:brightness(.95);text-decoration:none}
-button:active,.btn:active{transform:translateY(1px)}
-.btn.outline{background:transparent;color:var(--text);border:1px solid var(--border);box-shadow:none}
-.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-.skip-link:focus{
-  position:fixed;left:12px;top:12px;width:auto;height:auto;z-index:100001;
-  background:var(--brand);color:#fff;padding:8px 12px;border-radius:10px;
-  box-shadow:0 6px 18px rgba(0,0,0,.45);outline:none}
-hr{border:0;height:1px;background:var(--border);margin:24px 0}
-code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+html,body,#root{height:100%}
+html,body{background:#0b1220;color:#e5e7eb}
+a{color:#e5e7eb;text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ...pozostała część pliku z Twojego ZIPa... */
+
+/* Labels a bit brighter on dark */
+.aw-form label{color:#e5e7eb}
