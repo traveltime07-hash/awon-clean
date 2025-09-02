@@ -1,87 +1,131 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { UserPlus, Mail, Lock } from "lucide-react";
 
 export default function Register() {
-  const nav = useNavigate();
-  const [name, setName] = useState("");
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [err, setErr] = useState("");
-  const [ok, setOk] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setErr("");
-    setOk("");
-
-    const usersRaw = localStorage.getItem("AWON_USERS");
-    const users = usersRaw ? (JSON.parse(usersRaw) as Array<{email:string;password:string;name?:string}>) : [];
-
-    if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
-      setErr("Użytkownik z tym adresem e-mail już istnieje.");
-      return;
+    try {
+      setSubmitting(true);
+      await new Promise(r => setTimeout(r, 400));
+      navigate("/login");
+    } finally {
+      setSubmitting(false);
     }
-
-    users.push({ email, password: pass, name });
-    localStorage.setItem("AWON_USERS", JSON.stringify(users));
-    setOk("Konto utworzone. Możesz się zalogować.");
-    setTimeout(()=> nav("/login"), 800);
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex items-center justify-center px-6">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow p-6">
-        <h1 className="text-xl font-semibold">Rejestracja</h1>
-        <p className="text-sm text-gray-500 mt-1">Załóż konto demo (lokalnie).</p>
-
-        <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
-          <label className="text-sm">
-            <div className="text-gray-700">Imię i nazwisko</div>
-            <input
-              value={name}
-              onChange={e=>setName(e.target.value)}
-              required
-              className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2"
-            />
-          </label>
-
-          <label className="text-sm">
-            <div className="text-gray-700">E-mail</div>
-            <input
-              type="email"
-              value={email}
-              onChange={e=>setEmail(e.target.value)}
-              required
-              className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2"
-            />
-          </label>
-
-          <label className="text-sm">
-            <div className="text-gray-700">Hasło</div>
-            <input
-              type="password"
-              value={pass}
-              onChange={e=>setPass(e.target.value)}
-              required
-              className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2"
-            />
-          </label>
-
-          {err && <div className="text-sm text-red-600">{err}</div>}
-          {ok && <div className="text-sm text-green-600">{ok}</div>}
-
-          <button type="submit" className="w-full rounded-lg bg-[#0B6EFD] text-white py-2 font-semibold">
-            Utwórz konto
-          </button>
-        </form>
-
-        <div className="mt-4 text-sm text-gray-600">
-          Masz już konto?{" "}
-          <Link to="/login" className="text-[#0B6EFD] underline">
-            Zaloguj się
+    <div className="min-h-dvh bg-slate-950 text-slate-100 flex flex-col">
+      <header className="border-b border-slate-800/60">
+        <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
+          <Link to="/" className="inline-flex items-center gap-2 font-semibold tracking-tight">
+            <img src="/logo/awon-mark.svg" alt="" width={24} height={24} className="opacity-90" />
+            <span>AWON</span>
           </Link>
+          <nav className="text-sm">
+            <Link to="/contact.html" className="hover:underline">Kontakt</Link>
+          </nav>
         </div>
-      </div>
+      </header>
+
+      <main className="flex-1">
+        <div className="mx-auto max-w-6xl px-4 py-12">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <section className="hidden md:block">
+              <h1 className="text-3xl md:text-4xl font-semibold leading-tight">
+                Rejestracja
+              </h1>
+              <p className="mt-3 text-slate-300/90 max-w-prose">
+                Utwórz konto, aby korzystać z panelu AWON.
+              </p>
+            </section>
+
+            <section className="bg-slate-900/70 rounded-2xl border border-slate-800 p-6 md:p-8 shadow-lg shadow-slate-950/30">
+              <form className="space-y-5" onSubmit={onSubmit}>
+                <div>
+                  <label className="block text-sm font-medium text-slate-200 mb-1">Imię i nazwisko</label>
+                  <div className="relative">
+                    <UserPlus className="absolute left-3 top-1/2 -translate-y-1/2 size-4 opacity-70" />
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e)=>setName(e.target.value)}
+                      autoComplete="name"
+                      required
+                      placeholder="np. Jan Kowalski"
+                      className="w-full pl-10 pr-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:border-slate-500 outline-none placeholder-slate-400 text-slate-100"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-200 mb-1">E-mail</label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 opacity-70" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e)=>setEmail(e.target.value)}
+                      autoComplete="email"
+                      required
+                      placeholder="np. jan.kowalski@example.com"
+                      className="w-full pl-10 pr-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:border-slate-500 outline-none placeholder-slate-400 text-slate-100"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-200 mb-1">Hasło</label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 opacity-70" />
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e)=>setPassword(e.target.value)}
+                      autoComplete="new-password"
+                      required
+                      placeholder="••••••••"
+                      className="w-full pl-10 pr-3 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:border-slate-500 outline-none placeholder-slate-400 text-slate-100"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-medium bg-slate-100 text-slate-900 hover:bg-white disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  <UserPlus className="size-4" />
+                  {submitting ? "Zakładanie konta…" : "Utwórz konto"}
+                </button>
+
+                <p className="text-sm text-slate-400">
+                  Masz już konto?{" "}
+                  <Link to="/login" className="text-slate-200 hover:underline">
+                    Zaloguj się
+                  </Link>
+                </p>
+              </form>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <footer className="border-t border-slate-800/60">
+        <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between text-sm text-slate-400">
+          <div className="inline-flex items-center gap-2">
+            <img src="/logo/awon-mark.svg" width={16} height={16} alt="" />
+            <span>AWON</span>
+          </div>
+          <div>awonsystem.pl</div>
+        </div>
+      </footer>
     </div>
   );
 }

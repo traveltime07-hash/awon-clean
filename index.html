@@ -1,74 +1,49 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AWON</title>
-    <meta name="description" content="AWON — system zarządzania wynajmem obiektów noclegowych" />
-    <meta name="x-maintenance" content="%VITE_MAINTENANCE%">
-    <meta name="x-banner" content="%VITE_SHOW_BANNER%">
-    <meta name="x-banner-text" content="%VITE_BANNER_TEXT%">
-    <meta name="x-log" content="%VITE_LOG_PAGEVIEWS%">
-    <meta name="x-log-errors" content="%VITE_LOG_ERRORS%">
+    <title>AWON — system zarządzania obiektami noclegowymi</title>
 
-    <link rel="manifest" href="/manifest.webmanifest?v=2">
-    <meta name="theme-color" content="#0f172a">
-  <link rel="canonical" href="https://awonsystem.pl/">
-    <meta property="og:title" content="AWON — system zarządzania wynajmem" />
-    <meta property="og:description" content="Prostsza obsługa rezerwacji i operacji w obiektach noclegowych." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://awonsystem.pl/" />
-    <meta property="og:image" content="https://awonsystem.pl/api/og" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://api.awonsystem.pl" crossorigin>
-    <link rel="dns-prefetch" href="//api.awonsystem.pl">
-    <link rel="preconnect" href="https://vitals.vercel-insights.com" crossorigin>
-    <link rel="dns-prefetch" href="//vitals.vercel-insights.com">
+    <!-- Lock na ciemny motyw i oznaczenie trasy (brak przełącznika) -->
+    <script defer src="/theme-lock.js"></script>
+    <script defer src="/route-flag.js"></script>
 
-    <link rel="preload" href="/uifix.css" as="style">
+    <!-- Styles -->
     <link rel="stylesheet" href="/uifix.css" />
     <link rel="stylesheet" href="/pages.css" />
-    <link rel="stylesheet" href="/force-dark.css?v=6">
-  <script defer src="/theme-lock.js"></script>
-  <script defer src="/route-flag.js?v=2"></script>
-</head>
-  <body>
-    <a href="#main" class="skip-link">Pomiń do treści</a>
+    <link rel="stylesheet" href="/force-dark.css" />
 
-    <header class="aw-site-header">
-      <div class="aw-wrap aw-bar">
-        <a href="/" class="aw-brand"><img src="/logo/awon-mark.svg" alt="AWON" width="32" height="32"> AWON</a>
-        <nav class="aw-nav">
-          <a href="/">Start</a>
-          <a href="/contact.html">Kontakt</a>
-        </nav>
-        <button id="theme-toggle" class="btn outline aw-theme-toggle" aria-label="Przełącz motyw">
-          <span id="theme-label">Ciemny</span>
-        </button>
-      </div>
+    <meta property="og:title" content="AWON — system zarządzania obiektami noclegowymi" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+  </head>
+  <body>
+    <header class="aw-wrap aw-bar">
+      <a class="aw-logo" href="/">
+        <img src="/logo/awon-mark.svg" alt="" width="24" height="24" />
+        <span>AWON</span>
+      </a>
+
+      <nav class="aw-nav">
+        <a href="/contact.html">Kontakt</a>
+      </nav>
     </header>
 
-    <main id="main" class="aw-wrap">
-      <div id="root"></div>
-    </main>
+    <div id="root"></div>
 
-    <footer class="aw-site-footer">
-      <div class="aw-wrap aw-bar">
-        <div>© <span id="year"></span> AWON</div>
-        <div class="meta">awonsystem.pl</div>
+    <footer class="aw-wrap aw-bar aw-foot">
+      <div class="aw-foot-brand">
+        <img src="/logo/awon-mark.svg" width="16" height="16" alt="" />
+        <span>AWON</span>
       </div>
+      <div class="aw-foot-right">awonsystem.pl</div>
     </footer>
 
-    <script defer src="/theme.js"></script>
-    <script defer src="/footer.js"></script>
-    <script defer src="/errors-log.js"></script>
-    <script defer src="/error-overlay.js"></script>
-    <script defer src="/lazy.js"></script>
-    <script defer src="/banner.js"></script>
-    <script defer src="/log.js"></script>
-    <script defer src="/maintenance.js"></script>
-    <script defer src="/env-badge.js"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
