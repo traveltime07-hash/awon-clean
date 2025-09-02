@@ -1,20 +1,12 @@
 {
   "version": 2,
-  "routes": [
-    { "src": "^/robots\\.txt$", "dest": "/api/robots.txt" },
-    { "src": "^/sitemap\\.xml$", "dest": "/api/sitemap.xml" },
+  "rewrites": [
+    { "source": "/robots.txt",  "destination": "/api/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap.xml" },
 
-    { "src": "^/favicon\\.svg$", "dest": "/favicon.svg" },
-    { "src": "^/favicon\\.ico$", "dest": "/favicon.ico" },
-    { "src": "^/manifest\\.webmanifest$", "dest": "/manifest.webmanifest" },
-    { "src": "^/assets/(.*)$", "dest": "/assets/$1" },
-    { "src": "^/.*\\.(css|js|svg|png|jpg|jpeg|gif|webp|ico|woff|woff2|ttf|eot|otf)$", "dest": "/$0" },
+    { "source": "/(login|register)", "destination": "/index.html" },
 
-    { "src": "^/(login|register)$", "dest": "/index.html" },
-
-    { "handle": "filesystem" },
-
-    { "src": "^(?!/api/).*$", "dest": "/index.html" }
+    { "source": "/((?!api|assets|.*\\..*).*)", "destination": "/index.html" }
   ],
   "headers": [
     { "source": "/manifest.webmanifest", "headers": [
@@ -35,14 +27,14 @@
     ]},
 
     { "source": "/thanks.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/brand.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+    { "source": "/brand.html",  "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
     { "source": "/health.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/version.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/select-test.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/smoke.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/log-test.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/error-test.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
-    { "source": "/env-dump.html", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+    { "source": "/version.html","headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+    { "source": "/select-test.html","headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+    { "source": "/smoke.html",  "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+    { "source": "/log-test.html","headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+    { "source": "/error-test.html","headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
+    { "source": "/env-dump.html","headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" } ] },
 
     { "source": "/(.*)", "headers": [
       { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
