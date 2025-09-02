@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
-import "./index.css"; // jeśli masz Tailwinda, zostaw ten import
+import { App } from "./App";
+import "./index.css";
+
+window.addEventListener("error", (e) => console.error("[GlobalError]", e.error || e.message));
+window.addEventListener("unhandledrejection", (e) => console.error("[PromiseRejection]", e.reason));
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );

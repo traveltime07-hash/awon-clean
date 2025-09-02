@@ -1,19 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Ciemny motyw o wysokim kontraście (bez „szarych” niewyraźnych elementów) */
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body { margin: 0; background: #0b0f17; color: #f1f5f9; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
 
-/* Kilka drobnych bazowych styli, żeby było ładniej od razu */
-:root {
-  color-scheme: light;
+/* Linki i akcenty */
+a { color: #93c5fd; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Formy czytelne */
+input, select, textarea, button {
+  color: #e5e7eb !important;
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+select option { background: #0f172a; color: #e5e7eb; }
+
+/* Karty/sekcje */
+.card {
+  background: #0f172a;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+  padding: 16px;
 }
 
-html, body, #root {
-  height: 100%;
-}
+/* Prosty układ */
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
 
-body {
-  @apply bg-gray-50 text-gray-800 antialiased;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
-}
+.btn { border: 1px solid #3b82f6; border-radius: 12px; padding: 10px 14px; cursor: pointer; }
+.btn:hover { background: rgba(59,130,246,0.15); }
+.btn-ghost { border: 1px solid #334155; }
+.btn-green { border-color: #22c55e; }
+.btn-green:hover { background: rgba(34,197,94,0.15); }
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { border-bottom: 1px solid #1f2937; padding: 10px 8px; text-align: left; }
+.table th { color: #93c5fd; font-weight: 600; }
+
+.badge { display: inline-block; padding: 4px 8px; border: 1px solid #1f2937; border-radius: 999px; font-size: 12px; }
+.badge-free { border-color: #64748b; }
+.badge-paid { border-color: #22c55e; color: #22c55e; }
